@@ -6,6 +6,8 @@ import com.binance.api.client.BinanceApiClientFactory;
 import com.binance.api.client.BinanceApiRestClient;
 import com.binance.api.client.domain.account.Account;
 import com.binance.api.client.domain.account.AssetBalance;
+import com.binance.api.client.domain.market.Candlestick;
+import com.binance.api.client.domain.market.CandlestickInterval;
 import com.binance.api.client.domain.market.TickerPrice;
 
 import io.api.etherscan.*;
@@ -13,8 +15,12 @@ import io.api.etherscan.core.impl.EtherScanApi;
 import io.api.etherscan.model.Balance;
 import io.api.etherscan.model.EthNetwork;
 import io.api.etherscan.model.Price;
-public class api {
 
+
+
+
+public class api {
+    private String ETHAPIKEY = "YDCBXKWQUHHSDM4DB7256IVVERDUNXHM4K";
     private String provider;
     private String ethAddress;
     private BinanceApiClientFactory factory;
@@ -28,11 +34,15 @@ public class api {
         }
         else{
             this.provider = provider;
-            this.api = new EtherScanApi(EthNetwork.MAINNET);
+            this.api = new EtherScanApi(ETHAPIKEY);
+            this.ethAddress = ethString;
         }
     }
 
     public api(String provider, String key, String secret){
+        if(provider != "binance"){
+            throw new IllegalArgumentException();
+        }
         this.provider = provider;
         this.factory = BinanceApiClientFactory.newInstance(key, secret);
         this.client = factory.newRestClient();
@@ -62,6 +72,12 @@ public class api {
     public Price getEthPrice(){
         Price price = api.stats().lastPrice();
         return price;
+    }
+
+
+    public List<Candlestick> getCandleStickWeekData(String coin){
+        List<Candlestick> candlesticks = client.getCandlestickBars(coin, CandlestickInterval.WEEKLY);
+        return candlesticks;
     }
 
     //current price
