@@ -9,12 +9,12 @@ public class vars {
 	
 	public static void setup() {
 		
-		panelBGColor = Color.DARK_GRAY;
+		panelBGColor = new Color(1,79,134);
 		panelFGColor = null;
 		labelBGColor = null;
-		labelFGColor = Color.YELLOW;
+		labelFGColor = Color.WHITE;
 		btnBGColor = Color.BLACK;
-		btnFGColor = Color.YELLOW;
+		btnFGColor = Color.WHITE;
 		tfBGColor = Color.GRAY;
 		tfFGColor = Color.ORANGE;
 		

@@ -14,25 +14,31 @@ import javax.swing.JPanel;
 public class DashboardGUI {
 
 	private JFrame frame;
-	public JPanel mp, panel1, panel2;
-	private JLabel title;
-	private JButton menuOrder, fileOrder, back;
+	public JPanel mp, introView, balView, coinListView, chartView, accountView;
+	private JLabel introTitle, balTitle, coinListTitle, chartTitle, accountTitle;
+	private JButton button, back;
 	
 	public DashboardGUI() {
 //		INITIALIZE VARIABLES
         frame = new JFrame("Dashboard");
         mp = new JPanel();
-        panel1 = new JPanel();  
-        panel2 = new JPanel();  
-        JLabel title = new JLabel("WELCOME TO CRYPTO DASHBOARD");  
-        JButton menuOrder = new JButton("button");  
-        JButton fileOrder = new JButton("button");  
+        introView = new JPanel();  
+        balView = new JPanel();    
+        coinListView = new JPanel();    
+        chartView = new JPanel();      
+        accountView = new JPanel();  
+        JLabel introTitle = new JLabel("WELCOME TO CRYPTO DASHBOARD"); 
+        JLabel balTitle = new JLabel("View your Balance"); 
+        JLabel coinListTitle = new JLabel("Coin List:"); 
+        JLabel chartTitle = new JLabel("Chart"); 
+        JLabel accountTitle = new JLabel("View Connected Accounts"); 
+        JButton button = new JButton("button");  
         JButton back = new JButton("Back");
         
 //        ORGANIZE
-        JPanel[] panelArr = {mp, panel1, panel2};
-        JLabel[] labelArr = {title};
-        JButton[] buttonArr = {menuOrder, fileOrder, back};
+        JPanel[] panelArr = {mp, introView, balView, coinListView, chartView, accountView};
+        JLabel[] labelArr = {introTitle};
+        JButton[] buttonArr = {button, back};
         
 //        SET PROPERTIES
         for(int i=0;i<panelArr.length;i++) {
@@ -48,8 +54,8 @@ public class DashboardGUI {
         	buttonArr[i].setForeground(vars.btnFGColor);
         };
         mp.setLayout(new BoxLayout(mp, BoxLayout.Y_AXIS));
-        title.setForeground(Color.YELLOW);
-        title.setFont(new Font(null, Font.BOLD, 22));
+        introTitle.setForeground(Color.WHITE);
+        introTitle.setFont(new Font(null, Font.BOLD, 22));
         
 //		SETUP BUTTON ACTION LISTENERS
 //        menuOrder.addActionListener(new ActionListener() {
@@ -83,23 +89,27 @@ public class DashboardGUI {
         });
         
 //        PANEL MAKEUP
-        panel1.add(title);  
-        panel1.add(back);
-        
-        panel2.add(menuOrder);  
-        panel2.add(fileOrder);  
+        introView.add(introTitle);  
+        introView.add(back);
+        balView.add(balTitle);  
+        coinListView.add(coinListTitle);  
+        chartView.add(chartTitle);
+        accountView.add(accountTitle);
         
 //        MAIN PANEL MAKEUP
-        mp.add(panel1);
-        mp.add(panel2);
+        mp.add(introView);
+        mp.add(balView);
+        mp.add(coinListView);
+        mp.add(chartView);
+        mp.add(accountView);
         
 //        FRAME MAKEUP
         frame.add(mp);  
-        frame.setSize(700, 450);  
+        frame.setSize(900, 450);  
         frame.setLocationRelativeTo(null);  
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);  
-        title.requestFocus();
+        introTitle.requestFocus();
 
 	}
 
