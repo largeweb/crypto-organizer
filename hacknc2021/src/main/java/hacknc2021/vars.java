@@ -9,7 +9,7 @@ public class vars {
 	
 	public static void setup() {
 		
-		panelBGColor = Color.GREEN;
+		panelBGColor = Color.BLUE;
 		panelFGColor = null;
 		labelBGColor = null;
 		labelFGColor = Color.YELLOW;
