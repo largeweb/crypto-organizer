@@ -8,10 +8,12 @@ import com.binance.api.client.domain.account.AssetBalance;
 import io.api.etherscan.model.Price;
 
 public class main {
-	
+	// hello
 	public static StartGUI startGUI;
 	public static DashboardGUI dashboardGUI;
 
+
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 //		vars.setup();
@@ -25,6 +27,9 @@ public class main {
 //          Open and start the target data line to begin capturing audio data.
 //          Create an AudioInputStream object to read data from the target data line.
 //          Record the captured sound into a WAV file using the following method of the class AudioSystem:
+
+		// vars.setup();
+		// startGUI = new StartGUI();
 
 	}
 
