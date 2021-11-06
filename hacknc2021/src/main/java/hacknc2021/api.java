@@ -47,11 +47,7 @@ public class API {
         }
     }
 
-    public API(String provider){
-        if(provider != "binance"){
-            throw new IllegalArgumentException();
-        }
-        this.provider = provider;
+    public API(){
         this.factory = BinanceApiClientFactory.newInstance(BINANCEAPIKEY, BINANCESECRETKEY);
         this.client = factory.newRestClient();
         this.account = client.getAccount();
