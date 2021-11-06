@@ -20,6 +20,11 @@
     <artifactId>jython-slim</artifactId>
     <version>2.7.2</version>
   </dependency>
+  <dependency>
+    <groupId>com.lucadev</groupId>
+    <artifactId>coinmarketcap-api</artifactId>
+    <version>2.1</version>
+</dependency>
   </dependencies>
   <repositories>
     <repository>

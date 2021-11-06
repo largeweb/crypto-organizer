@@ -9,10 +9,13 @@ import java.io.*;
  */
 public class JavaSoundRecorder {
     // record duration, in milliseconds
-    static final long RECORD_TIME = 60000;  // 1 minute
+    static final long RECORD_TIME = 6000;  // 6 seconds
  
     // path of the wav file
-    File wavFile = new File("E:/Test/RecordAudio.wav");
+	static File wavFile = new File("src/main/java/audio/recorded.wav");
+//	if (!f.exists()){
+//	    wavFile.mkdirs();
+//	}
  
     // format of audio file
     AudioFileFormat.Type fileType = AudioFileFormat.Type.WAVE;
@@ -79,7 +82,10 @@ public class JavaSoundRecorder {
     /**
      * Entry to run the program
      */
-    public static void main(String[] args) {
+    public static void record() {
+        if (!wavFile.exists()){
+            	wavFile.mkdirs();
+        }
         final JavaSoundRecorder recorder = new JavaSoundRecorder();
  
         // creates a new thread that waits for a specified
@@ -87,7 +93,7 @@ public class JavaSoundRecorder {
         Thread stopper = new Thread(new Runnable() {
             public void run() {
                 try {
-                    Thread.sleep(RECORD_TIME);
+                    Thread.sleep(6000);
                 } catch (InterruptedException ex) {
                     ex.printStackTrace();
                 }
