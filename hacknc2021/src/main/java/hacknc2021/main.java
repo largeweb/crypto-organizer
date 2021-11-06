@@ -16,8 +16,6 @@ public class main {
 		// TODO Auto-generated method stub
 		vars.setup();
 		startGUI = new StartGUI();
-
-
 	}
 
 }
