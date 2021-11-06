@@ -88,13 +88,6 @@ public class API {
         return dataList.get(0).getLow();
     }
 
-
-
-
-
-
-
-
     public BigInteger getEthBalance(){
         //work
         Balance balance = api.account().balance(ethAddress);
