@@ -85,7 +85,7 @@ public class JavaSoundRecorder {
     public static void record() {
         if (!wavFile.exists()){
             	wavFile.mkdirs();
-            	}
+        }
         final JavaSoundRecorder recorder = new JavaSoundRecorder();
  
         // creates a new thread that waits for a specified

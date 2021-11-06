@@ -16,8 +16,8 @@ import com.lucadev.coinmarketcap.model.CoinMarketList;
 import com.lucadev.coinmarketcap.model.CoinMarketList;
  
 import io.api.etherscan.*;
-import io.api.etherscan.core.impl.EtherScanApi;
 import io.api.etherscan.model.Balance;
+import io.api.etherscan.core.impl.EtherScanApi;
 import io.api.etherscan.model.EthNetwork;
 import io.api.etherscan.model.Price;
  
@@ -25,6 +25,7 @@ import io.api.etherscan.model.Price;
  
  
 public class API {
+
    private String ETHAPIKEY = "YDCBXKWQUHHSDM4DB7256IVVERDUNXHM4K";
    private String BINANCEAPIKEY = "YwlhpJmQINO1hZDZ70zahTRleljKLOMhbpNcivvMUA2L9p96jyW85raYBWZW4iZ6";
    private String BINANCESECRETKEY = "sMaYxnbTmtlFUSfxuvZopsDr2M8UQ2nx77Fyu0gMIsdtj1h0CFGtvMv0WKaMPdyr";
@@ -127,5 +128,4 @@ public class API {
  
    //current price
    //CSV for previous prices
-   //
 }

@@ -9,6 +9,7 @@ import io.api.etherscan.model.Price;
 
 public class main {
 	// hello
+	
 	public static StartGUI startGUI;
 	public static DashboardGUI dashboardGUI;
 
@@ -18,6 +19,7 @@ public class main {
 		// TODO Auto-generated method stub
 //		vars.setup();
 //		startGUI = new StartGUI();
+
 		JavaSoundRecorder recorder = new JavaSoundRecorder(); 
 		recorder.record();
 		
@@ -30,7 +32,6 @@ public class main {
 
 		// vars.setup();
 		// startGUI = new StartGUI();
-
 
 	}
 }
