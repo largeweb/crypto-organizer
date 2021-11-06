@@ -12,7 +12,7 @@ public class JavaSoundRecorder {
     static final long RECORD_TIME = 6000;  // 6 seconds
  
     // path of the wav file
-	File wavFile = new File("src/main/java/audio/recorded.wav");
+	static File wavFile = new File("src/main/java/audio/recorded.wav");
 //	if (!f.exists()){
 //	    wavFile.mkdirs();
 //	}
@@ -83,6 +83,9 @@ public class JavaSoundRecorder {
      * Entry to run the program
      */
     public static void record() {
+        if (!wavFile.exists()){
+            	wavFile.mkdirs();
+            	}
         final JavaSoundRecorder recorder = new JavaSoundRecorder();
  
         // creates a new thread that waits for a specified
