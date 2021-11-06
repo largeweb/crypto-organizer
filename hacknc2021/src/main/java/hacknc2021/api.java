@@ -11,8 +11,8 @@ import com.binance.api.client.domain.market.CandlestickInterval;
 import com.binance.api.client.domain.market.TickerPrice;
 
 import io.api.etherscan.*;
-import io.api.etherscan.model.Balance;
 import io.api.etherscan.core.impl.EtherScanApi;
+import io.api.etherscan.model.Balance;
 import io.api.etherscan.model.EthNetwork;
 import io.api.etherscan.model.Price;
 
@@ -87,6 +87,13 @@ public class API {
         List<Candlestick> dataList = getCandleStickData(coin, inter);
         return dataList.get(0).getLow();
     }
+
+
+
+
+
+
+
 
     public BigInteger getEthBalance(){
         //work
