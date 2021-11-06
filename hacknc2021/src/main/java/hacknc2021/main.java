@@ -14,8 +14,8 @@ public class main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		//vars.setup();
-		//startGUI = new StartGUI();
+		vars.setup();
+		startGUI = new StartGUI();
 	}
 
 }

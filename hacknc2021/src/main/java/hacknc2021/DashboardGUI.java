@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.GridLayout;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -14,13 +15,15 @@ import javax.swing.JPanel;
 public class DashboardGUI {
 
 	private JFrame frame;
-	public JPanel mp, introView, balView, coinListView, chartView, accountView;
+	public JPanel introPanel, dashPanel, mp, introView, balView, coinListView, chartView, accountView;
 	private JLabel introTitle, balTitle, coinListTitle, chartTitle, accountTitle;
 	private JButton button, back;
 	
 	public DashboardGUI() {
 //		INITIALIZE VARIABLES
         frame = new JFrame("Dashboard");
+        introPanel = new JPanel();
+        dashPanel = new JPanel();
         mp = new JPanel();
         introView = new JPanel();  
         balView = new JPanel();    
@@ -36,7 +39,7 @@ public class DashboardGUI {
         JButton back = new JButton("Back");
         
 //        ORGANIZE
-        JPanel[] panelArr = {mp, introView, balView, coinListView, chartView, accountView};
+        JPanel[] panelArr = {introPanel, dashPanel, mp, introView, balView, coinListView, chartView, accountView};
         JLabel[] labelArr = {introTitle};
         JButton[] buttonArr = {button, back};
         
@@ -97,13 +100,17 @@ public class DashboardGUI {
         accountView.add(accountTitle);
         
 //        MAIN PANEL MAKEUP
-        mp.add(introView);
-        mp.add(balView);
-        mp.add(coinListView);
-        mp.add(chartView);
-        mp.add(accountView);
+        introPanel.add(introView);
+        dashPanel.add(balView);
+        dashPanel.add(coinListView);
+        dashPanel.add(chartView);
+        dashPanel.add(accountView);
+        mp.add(introPanel);
+        mp.add(dashPanel);
         
 //        FRAME MAKEUP
+        GridLayout layout = new GridLayout(2,2);
+        dashPanel.setLayout(layout);
         frame.add(mp);  
         frame.setSize(900, 450);  
         frame.setLocationRelativeTo(null);  
