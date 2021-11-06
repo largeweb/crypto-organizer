@@ -27,7 +27,7 @@ public class main {
         Thread stopper = new Thread(new Runnable() {
             public void run() {
                 try {
-                    Thread.sleep(RECORD_TIME);
+                    Thread.sleep(6000);
                 } catch (InterruptedException ex) {
                     ex.printStackTrace();
                 }

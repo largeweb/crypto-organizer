@@ -34,3 +34,18 @@ def submit_file():
     }
 
     response = requests.post(endpoint, json=json, headers=headers)
+
+
+
+def get_result():
+    endpoint = "https://api.assemblyai.com/v2/transcript/YOUR-TRANSCRIPT-ID-HERE"
+
+    headers = {
+        "authorization": "c49b114cfe8e4b0b9ce7c31e216f914f",
+    }
+
+    response = requests.get(endpoint, headers=headers)
+
+    print(response.json())
+
+    
