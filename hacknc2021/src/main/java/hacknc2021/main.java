@@ -31,29 +31,6 @@ public class main {
 		// vars.setup();
 		// startGUI = new StartGUI();
 
-<<<<<<< HEAD
 
-		final JavaSoundRecorder recorder = new JavaSoundRecorder();
- 
-        // creates a new thread that waits for a specified
-        // of time before stopping
-        Thread stopper = new Thread(new Runnable() {
-            public void run() {
-                try {
-                    Thread.sleep(6000);
-                } catch (InterruptedException ex) {
-                    ex.printStackTrace();
-                }
-                recorder.finish();
-            }
-        });
- 
-        stopper.start();
- 
-        // start recording
-        recorder.start();
-=======
->>>>>>> e9f57d287b03f395444b5f4cf7f0f4448f3d3697
 	}
-
 }

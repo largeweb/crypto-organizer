@@ -21,8 +21,8 @@ import io.api.etherscan.model.Price;
 
 public class API {
     private String ETHAPIKEY = "YDCBXKWQUHHSDM4DB7256IVVERDUNXHM4K";
-    private String BINANCEAPIKEY = "";
-    private String BINANCESECRETKEY = "";
+    private String BINANCEAPIKEY = "YwlhpJmQINO1hZDZ70zahTRleljKLOMhbpNcivvMUA2L9p96jyW85raYBWZW4iZ6";
+    private String BINANCESECRETKEY = "sMaYxnbTmtlFUSfxuvZopsDr2M8UQ2nx77Fyu0gMIsdtj1h0CFGtvMv0WKaMPdyr";
     private String provider;
     private String ethAddress;
     private BinanceApiClientFactory factory;
