@@ -91,14 +91,10 @@ public class DashboardGUI {
 //        PANEL MAKEUP
         introView.add(introTitle);  
         introView.add(back);
-        
-        balView.add(button);  
-       
-        coinListView.add(button);  
-        
-        chartView.add(button);
-        
-        accountView.add(button);
+        balView.add(balTitle);  
+        coinListView.add(coinListTitle);  
+        chartView.add(chartTitle);
+        accountView.add(accountTitle);
         
 //        MAIN PANEL MAKEUP
         mp.add(introView);
