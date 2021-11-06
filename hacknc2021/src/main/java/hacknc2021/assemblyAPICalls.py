@@ -6,6 +6,7 @@ import time
 import requests
 filename = "/path/to/foo.wav"
 read_json = ""
+hi = "hi"
  
 def read_file(filename, chunk_size=5242880):
     with open(filename, 'rb') as _file:
