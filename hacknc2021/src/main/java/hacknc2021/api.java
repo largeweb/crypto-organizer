@@ -9,6 +9,11 @@ import com.binance.api.client.domain.account.AssetBalance;
 import com.binance.api.client.domain.market.Candlestick;
 import com.binance.api.client.domain.market.CandlestickInterval;
 import com.binance.api.client.domain.market.TickerPrice;
+import com.lucadev.coinmarketcap.CoinMarketCap;
+import com.lucadev.coinmarketcap.Currency;
+import com.lucadev.coinmarketcap.model.CoinMarket;
+import com.lucadev.coinmarketcap.model.CoinMarketList;
+import com.lucadev.coinmarketcap.model.CoinMarketList;
 
 import io.api.etherscan.*;
 import io.api.etherscan.core.impl.EtherScanApi;
@@ -51,6 +56,16 @@ public class API {
         this.client = factory.newRestClient();
         this.account = client.getAccount();
     }
+
+    //https://github.com/Camphul/CoinMarketCap-API
+    //https://coinmarketcap.com/api/documentation/v1/#operation/getV1CryptocurrencyMap
+    public Double getCoinPrice(String coin){
+        CoinMarketList coinMarkets  = CoinMarketCap.ticker().setLimit(5).convert(Currency.USD).get();
+        CoinMarket bitcoinMarket = coinMarkets.getByName(coin);
+        return bitcoinMarket.getUSDPriceQuote().getPrice();
+    }
+
+
 
 
     public List<AssetBalance> getBinanceAccountBalance(){
