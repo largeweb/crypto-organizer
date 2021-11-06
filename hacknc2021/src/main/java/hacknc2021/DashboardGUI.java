@@ -31,7 +31,7 @@ public class DashboardGUI {
         JLabel balTitle = new JLabel("View your Balance"); 
         JLabel coinListTitle = new JLabel("Coin List:"); 
         JLabel chartTitle = new JLabel("Chart"); 
-        JLabel accoutTitle = new JLabel("View Connected Accounts"); 
+        JLabel accountTitle = new JLabel("View Connected Accounts"); 
         JButton button = new JButton("button");  
         JButton back = new JButton("Back");
         
@@ -54,7 +54,7 @@ public class DashboardGUI {
         	buttonArr[i].setForeground(vars.btnFGColor);
         };
         mp.setLayout(new BoxLayout(mp, BoxLayout.Y_AXIS));
-        introTitle.setForeground(Color.YELLOW);
+        introTitle.setForeground(Color.WHITE);
         introTitle.setFont(new Font(null, Font.BOLD, 22));
         
 //		SETUP BUTTON ACTION LISTENERS
