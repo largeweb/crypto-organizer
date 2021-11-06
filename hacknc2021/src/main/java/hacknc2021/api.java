@@ -19,16 +19,19 @@ import io.api.etherscan.model.Price;
 
 
 
-public class api {
+public class API {
     private String ETHAPIKEY = "YDCBXKWQUHHSDM4DB7256IVVERDUNXHM4K";
+    private String BINANCEAPIKEY = "YwlhpJmQINO1hZDZ70zahTRleljKLOMhbpNcivvMUA2L9p96jyW85raYBWZW4iZ6";
+    private String BINANCESECRETKEY = "sMaYxnbTmtlFUSfxuvZopsDr2M8UQ2nx77Fyu0gMIsdtj1h0CFGtvMv0WKaMPdyr";
     private String provider;
     private String ethAddress;
     private BinanceApiClientFactory factory;
     private BinanceApiRestClient client;
     private EtherScanApi api;
     private Account account;
+
  
-    public api(String provider, String ethString){
+    public API(String provider, String ethString){
         if(provider != "eth"){
             throw new IllegalArgumentException();
         }
@@ -39,12 +42,12 @@ public class api {
         }
     }
 
-    public api(String provider, String key, String secret){
+    public API(String provider){
         if(provider != "binance"){
             throw new IllegalArgumentException();
         }
         this.provider = provider;
-        this.factory = BinanceApiClientFactory.newInstance(key, secret);
+        this.factory = BinanceApiClientFactory.newInstance(BINANCEAPIKEY, BINANCESECRETKEY);
         this.client = factory.newRestClient();
         this.account = client.getAccount();
     }
@@ -64,21 +67,53 @@ public class api {
         return tick.getPrice();
     }
 
-    public BigInteger getEthBalance(String ethAddress){
+    public String getBinanceSpecificPrice(String coin){
+        Double price = Double.parseDouble(getBinancePrice(coin)) * Double.parseDouble(getBinanceBalanceCoin(coin));
+        return price.toString();
+    }
+
+    public List<Candlestick> getCandleStickData(String coin, CandlestickInterval interval){
+        List<Candlestick> candlesticks = client.getCandlestickBars(coin, interval);
+        return candlesticks;
+    }
+
+
+    public String getHigh(String coin, CandlestickInterval inter){
+        List<Candlestick> dataList = getCandleStickData(coin, inter);
+        return dataList.get(0).getHigh();
+    }
+
+    public String getLow(String coin, CandlestickInterval inter){
+        List<Candlestick> dataList = getCandleStickData(coin, inter);
+        return dataList.get(0).getLow();
+    }
+
+
+
+
+
+
+
+
+    public BigInteger getEthBalance(){
+        //work
         Balance balance = api.account().balance(ethAddress);
         return balance.getEther();
     }
 
-    public Price getEthPrice(){
+    public Double getEthPrice(){
+        //work
         Price price = api.stats().lastPrice();
-        return price;
+        return price.inUsd();
     }
 
-
-    public List<Candlestick> getCandleStickWeekData(String coin){
-        List<Candlestick> candlesticks = client.getCandlestickBars(coin, CandlestickInterval.WEEKLY);
-        return candlesticks;
+    public String getMyEthCost(){
+        //work
+        Double price = getEthPrice() * getEthBalance().intValue(); 
+        return price.toString();
     }
+
+   
 
     //current price
     //CSV for previous prices
