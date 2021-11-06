@@ -9,7 +9,6 @@ import io.api.etherscan.model.Price;
 
 public class main {
 	// hello
-	
 	public static StartGUI startGUI;
 	public static DashboardGUI dashboardGUI;
 
@@ -19,19 +18,18 @@ public class main {
 		// TODO Auto-generated method stub
 //		vars.setup();
 //		startGUI = new StartGUI();
-
-		JavaSoundRecorder recorder = new JavaSoundRecorder(); 
-		recorder.record();
-		
-//	      Define an audio format of the sound source to be captured, using the class AudioFormat.
-//          Create a DataLine.Info object to hold information of a data line.
-//          Obtain a TargetDataLine object which represents an input data line from which audio data can be captured, using the method getLineInfo(DataLine.Info) of the AudioSystem class.
-//          Open and start the target data line to begin capturing audio data.
-//          Create an AudioInputStream object to read data from the target data line.
-//          Record the captured sound into a WAV file using the following method of the class AudioSystem:
-
-		// vars.setup();
-		// startGUI = new StartGUI();
+		User user1 = new User("Josh");
+		try {			
+			user1.addCoin("Dogecoin", 1000);
+			user1.addCoin("AICoin", 3000);
+			user1.addCoin("BugCoin", 2000);
+			user1.addCoin("BugCoin", 65000);
+			user1.removeCoin("Dogecoin");
+			user1.removeCoin("AICoin");
+		} catch(Exception e) {
+			System.out.println("Some exception was caught");
+		}
+		user1.printEverything();
 
 	}
 }
