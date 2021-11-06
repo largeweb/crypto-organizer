@@ -14,9 +14,9 @@ public class RunnableThread implements Runnable {
 		// TODO Auto-generated method stub
 		System.out.println("RUNNING THREAD: " + threadName);
 		try {
-			if(threadName == "test") {
-				System.out.println("RUNNING TEST");
-				//MAKE NEW GUI
+			if(threadName == "viewaccount") {
+				System.out.println("starting dashboard gui");
+				main.dashboardGUI = new DashboardGUI();
 			}
 		} catch (Exception e) {}
 	}

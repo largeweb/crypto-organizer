@@ -1,40 +1,38 @@
 package hacknc2021;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-//THIS IS THE STARTING GUI WHEN YOU LAUNCH THE PROGRAM
-public class StartGUI {
-	
-	public JFrame frame;
-	private JPanel mp, panel1;
+public class DashboardGUI {
+
+	private JFrame frame;
+	public JPanel mp, panel1, panel2;
 	private JLabel title;
-	private JButton viewAcct1;
+	private JButton menuOrder, fileOrder, back;
 	
-	public StartGUI() {
+	public DashboardGUI() {
 //		INITIALIZE VARIABLES
-        frame = new JFrame("Crypto Organizer");
+        frame = new JFrame("Dashboard");
         mp = new JPanel();
         panel1 = new JPanel();  
-        JLabel title = new JLabel("Crypto Organizer");  
-        JButton viewAcct1 = new JButton("View Account");  
-        JButton viewAcct2 = new JButton("View Account");  
+        panel2 = new JPanel();  
+        JLabel title = new JLabel("WELCOME TO CRYPTO DASHBOARD");  
+        JButton menuOrder = new JButton("button");  
+        JButton fileOrder = new JButton("button");  
+        JButton back = new JButton("Back");
         
 //        ORGANIZE
-        JPanel[] panelArr = {mp, panel1};
+        JPanel[] panelArr = {mp, panel1, panel2};
         JLabel[] labelArr = {title};
-        JButton[] buttonArr = {viewAcct1, viewAcct2};
+        JButton[] buttonArr = {menuOrder, fileOrder, back};
         
 //        SET PROPERTIES
         for(int i=0;i<panelArr.length;i++) {
@@ -54,23 +52,46 @@ public class StartGUI {
         title.setFont(new Font(null, Font.BOLD, 22));
         
 //		SETUP BUTTON ACTION LISTENERS
-        viewAcct1.addActionListener(new ActionListener() {
+//        menuOrder.addActionListener(new ActionListener() {
+//
+//			public void actionPerformed(ActionEvent arg0) {
+//				// TODO Auto-generated method stub
+////				new ();
+//				frame.dispose();
+//			}
+//
+//        });
+//        
+//        fileOrder.addActionListener(new ActionListener() {
+//
+//			public void actionPerformed(ActionEvent arg0) {
+//				// TODO Auto-generated method stub
+////				new SnapFileGUI();
+//				frame.dispose();
+//			}
+//
+//        });
+        
+        back.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				System.out.println("viewaccount thread starting:");
-				RunnableThread thread1 = new RunnableThread("viewaccount");
-				thread1.run();
+				main.startGUI = new StartGUI();
+				frame.dispose();
 			}
 
         });
         
 //        PANEL MAKEUP
         panel1.add(title);  
-        panel1.add(viewAcct1);  
+        panel1.add(back);
+        
+        panel2.add(menuOrder);  
+        panel2.add(fileOrder);  
         
 //        MAIN PANEL MAKEUP
         mp.add(panel1);
+        mp.add(panel2);
         
 //        FRAME MAKEUP
         frame.add(mp);  
@@ -84,7 +105,7 @@ public class StartGUI {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new StartGUI();
+		new DashboardGUI();
 	}
 
 }
