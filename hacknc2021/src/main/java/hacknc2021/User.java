@@ -7,15 +7,21 @@ public class User {
 	private String name;
 	private ArrayList<String> coinlist;
 	private ArrayList<Integer> numPerCoinList;
+	private double totalBalInUSD;
 	
 	public User(String name) {
 		this.name = name;
 		coinlist = new ArrayList<String>();
 		numPerCoinList = new ArrayList<Integer>();
+		this.totalBalInUSD = 2342.32;
 	}
 	
 	public String getName() {
 		return name;
+	}
+	
+	public double getTotalBal() {
+		return totalBalInUSD;
 	}
 
 	public ArrayList<String> getCoinList() {

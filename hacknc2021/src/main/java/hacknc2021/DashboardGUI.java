@@ -68,7 +68,7 @@ public class DashboardGUI {
         balView = new JPanel();   
         balViewOut = new JPanel();
         balanceLabelList = new ArrayList<JLabel>();
-        JLabel totalBalance = new JLabel("Your total balance is: IMPLEMENT");
+        JLabel totalBalance = new JLabel("Your total balance is: " + user.getTotalBal());
         balanceLabelList.add(totalBalance);
 //        COIN LIST VIEW STUFF
         coinlistLabels = new ArrayList<JLabel>();
