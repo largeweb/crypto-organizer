@@ -25,7 +25,7 @@ public class DashboardGUI {
 	public static JFrame frame;
 	public JPanel introPanel, dashPanel, mp, introView, balView, balViewOut, coinListView, coinListViewOut, chartView, accountView, accountViewOut;
 	private JLabel introTitle, balTitle, coinListTitle, chartTitle, accountTitle;
-	private JButton button, back, loadUser, voiceBuildChart, addAccount;
+	private JButton button, back, loadUser, addAccount;
 	
 //	BALANCE VIEW STUFF
 	private ArrayList<JLabel> balanceLabelList;
@@ -36,7 +36,7 @@ public class DashboardGUI {
 	private ArrayList<JLabel> coinlistLabels, coinlistNumLabels;
 //	CHART VIEW STUFF
 	private JTextField testTF;
-	private JButton testBuild;
+	private JButton testBuild, voiceBuild;
 	private JPanel cp;
 //	ACCOUNT VIEW STUFF
 	
@@ -68,7 +68,7 @@ public class DashboardGUI {
         balView = new JPanel();   
         balViewOut = new JPanel();
         balanceLabelList = new ArrayList<JLabel>();
-        JLabel totalBalance = new JLabel("Your total balance is: IMPLEMENT");
+        JLabel totalBalance = new JLabel("Your total balance is: " + user.getTotalBal());
         balanceLabelList.add(totalBalance);
 //        COIN LIST VIEW STUFF
         coinlistLabels = new ArrayList<JLabel>();
@@ -92,7 +92,7 @@ public class DashboardGUI {
         chartView = new JPanel();      
         testTF = new JTextField("Enter Inputs Here");
         testBuild = new JButton("Build Chart");
-        voiceBuildChart = new JButton("Build a Chart");  
+        voiceBuild = new JButton("Use Voice");  
 //        ACCOUT VIEW STUFF
         accountTitle = new JLabel("View Connected Accounts"); 
         accountView = new JPanel();
@@ -142,7 +142,16 @@ public class DashboardGUI {
 				frame.dispose();
 			}
 
-        });        
+        }); 
+        voiceBuild.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				JavaSoundRecorder jsr = new JavaSoundRecorder();
+				jsr.start();
+			}
+
+        }); 
         testBuild.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
@@ -184,6 +193,7 @@ public class DashboardGUI {
         chartView.add(chartTitle);
         chartView.add(testTF);
         chartView.add(testBuild);
+        chartView.add(voiceBuild);
 //        ACCOUNT VIEW STUFF
         accountView.add(accountTitle);
         

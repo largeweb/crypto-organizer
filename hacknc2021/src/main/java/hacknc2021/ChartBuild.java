@@ -18,19 +18,25 @@ public class ChartBuild {
 	}
 	
 	public JPanel getChart() {
-		JPanel test = new JPanel();
-		API api = new API();
+		JPanel cp = new JPanel();
+//		API api = new API();
 		if(ctype == "m1chart") {	
+			JPanel leftChart = new JPanel();
+			JPanel rightChart = new JPanel();
 	       for(int i=0; i<user.getCoinList().size(); i++) {
-	    	   test.add(new JLabel(user.getCoinList().get(i)));
+	    	   leftChart.add(new JLabel(user.getCoinList().get(i)));
+	    	   rightChart.add(new JLabel(user.getNumPerCoinList().get(i).toString()));
 	       }
+	       cp.setLayout(new FlowLayout(FlowLayout.LEFT));
+	       cp.add(leftChart);
+	       cp.add(rightChart);
 		}
-		if(ctype == "ethbalance") {
-			test.add(new JLabel(api.getMyEthCost()));
-			test.add(new JLabel(api.getBinancePrice("Dogecoin")));
-			test.add(new JLabel(api.getEthBalance().toString()));
-		}
-		return test;
+//		if(ctype == "ethbalance") {
+//			test.add(new JLabel(api.getMyEthCost()));
+//			test.add(new JLabel(api.getBinancePrice("Dogecoin")));
+//			test.add(new JLabel(api.getEthBalance().toString()));
+//		}
+		return cp;
 	}
 
 }
