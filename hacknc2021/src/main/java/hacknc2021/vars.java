@@ -5,7 +5,7 @@ import java.awt.Color;
 //THIS IS A GLOBAL VARIABLE CLASS
 public class vars {
 	
-	public static Color panelBGColor, panelFGColor, labelBGColor, labelFGColor, btnBGColor, btnFGColor, tfBGColor, tfFGColor;
+	public static Color panelBGColor, panelFGColor, labelBGColor, labelFGColor, btnBGColor, btnFGColor, tfBGColor, tfFGColor, mainPanelColor;
 	
 	public static void setup() {
 		
@@ -17,6 +17,7 @@ public class vars {
 		btnFGColor = Color.WHITE;
 		tfBGColor = Color.GRAY;
 		tfFGColor = Color.ORANGE;
+		mainPanelColor = Color.WHITE;
 		
 	}
 	

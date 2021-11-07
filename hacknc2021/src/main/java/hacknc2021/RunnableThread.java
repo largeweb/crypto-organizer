@@ -16,7 +16,13 @@ public class RunnableThread implements Runnable {
 		try {
 			if(threadName == "viewaccount") {
 				System.out.println("starting dashboard gui");
+				main.startGUI.frame.dispose();
 				main.dashboardGUI = new DashboardGUI();
+			}
+			if(threadName == "backtomain") {
+				System.out.println("starting dashboard gui");
+				main.dashboardGUI.frame.dispose();
+				main.startGUI = new StartGUI();
 			}
 		} catch (Exception e) {}
 	}

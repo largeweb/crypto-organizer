@@ -17,24 +17,23 @@ import javax.swing.JTextField;
 //THIS IS THE STARTING GUI WHEN YOU LAUNCH THE PROGRAM
 public class StartGUI {
 	
-	public JFrame frame;
+	public static JFrame frame;
 	private JPanel mp, panel1;
 	private JLabel title;
-	private JButton viewAcct1;
+	private JButton viewAcct;
 	
 	public StartGUI() {
 //		INITIALIZE VARIABLES
         frame = new JFrame("Crypto Organizer");
         mp = new JPanel();
         panel1 = new JPanel();  
-        JLabel title = new JLabel("Crypto Organizer");  
-        JButton viewAcct1 = new JButton("View Account");  
-        JButton viewAcct2 = new JButton("View Account");  
+        title = new JLabel("Crypto Organizer");  
+        viewAcct = new JButton("View Account");  
         
 //        ORGANIZE
         JPanel[] panelArr = {mp, panel1};
         JLabel[] labelArr = {title};
-        JButton[] buttonArr = {viewAcct1, viewAcct2};
+        JButton[] buttonArr = {viewAcct};
         
 //        SET PROPERTIES
         for(int i=0;i<panelArr.length;i++) {
@@ -54,7 +53,7 @@ public class StartGUI {
         title.setFont(new Font(null, Font.BOLD, 22));
         
 //		SETUP BUTTON ACTION LISTENERS
-        viewAcct1.addActionListener(new ActionListener() {
+        viewAcct.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
@@ -67,7 +66,7 @@ public class StartGUI {
         
 //        PANEL MAKEUP
         panel1.add(title);  
-        panel1.add(viewAcct1);  
+        panel1.add(viewAcct);  
         
 //        MAIN PANEL MAKEUP
         mp.add(panel1);
