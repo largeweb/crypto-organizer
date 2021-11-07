@@ -41,15 +41,15 @@ public class StartGUI {
         for(int i=0;i<panelArr.length;i++) {
         	panelArr[i].setBackground(vars.panelBGColor);
         	panelArr[i].setForeground(vars.panelFGColor);
-        };
+        }
         for(int i=0;i<labelArr.length;i++) {
         	labelArr[i].setBackground(vars.labelBGColor);
         	labelArr[i].setForeground(vars.labelFGColor);
-        };
+        }
         for(int i=0;i<buttonArr.length;i++) {
         	buttonArr[i].setBackground(vars.btnBGColor);
         	buttonArr[i].setForeground(vars.btnFGColor);
-        };
+        }
         mp.setLayout(new BoxLayout(mp, BoxLayout.Y_AXIS));
         title.setForeground(vars.labelFGColor);
         titleLabel.setFont(new Font(null, Font.BOLD, 25));
