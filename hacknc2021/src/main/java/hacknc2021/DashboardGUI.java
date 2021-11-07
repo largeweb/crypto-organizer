@@ -22,16 +22,21 @@ import javax.swing.JPanel;
 public class DashboardGUI {
 
 	public static JFrame frame;
-	public JPanel introPanel, dashPanel, mp, introView, balView, coinListView, chartView, accountView;
+	public JPanel introPanel, dashPanel, mp, introView, balView, balViewOut, coinListView, coinListViewOut, chartView, accountView, accountViewOut;
 	private JLabel introTitle, balTitle, coinListTitle, chartTitle, accountTitle;
 	private JButton button, back, loadUser, voiceBuildChart, addAccount;
 	
 //	BALANCE VIEW STUFF
 	private ArrayList<JLabel> balanceLabelList;
 //	COIN LIST VIEW STUFF
+	private JTextField addCoinTF;
 	private JButton addCoin, removeCoin;
-	private ArrayList<JLabel> coinlistLabels;
+	private JPanel coinlistLRPanel, coinlistLeft, coinlistRight;
+	private ArrayList<JLabel> coinlistLabels, coinlistNumLabels;
 //	CHART VIEW STUFF
+	private JTextField testTF;
+	private JButton testBuild;
+	private JPanel chart;
 //	ACCOUNT VIEW STUFF
 	
 	private User user;
@@ -52,7 +57,7 @@ public class DashboardGUI {
         dashPanel = new JPanel();
         mp = new JPanel();
         introView = new JPanel();  
-        JLabel introTitle = new JLabel("WELCOME TO CRYPTO DASHBOARD"); 
+        JLabel introTitle = new JLabel("Welcome back, " + user.getName()); 
 //        JButton button = new JButton("button");  
         JButton back = new JButton("Back");
 //        loadUser = new JButton("Load User");  
@@ -60,26 +65,40 @@ public class DashboardGUI {
 //        BAL VIEW STUFF
         balTitle = new JLabel("View your Balance"); 
         balView = new JPanel();   
+        balViewOut = new JPanel();
         balanceLabelList = new ArrayList<JLabel>();
         JLabel totalBalance = new JLabel("Your total balance is: IMPLEMENT");
         balanceLabelList.add(totalBalance);
 //        COIN LIST VIEW STUFF
         coinlistLabels = new ArrayList<JLabel>();
+        coinlistNumLabels = new ArrayList<JLabel>();
+        coinlistLRPanel = new JPanel();
+        coinlistLeft = new JPanel();
+        coinListView = new JPanel(); 
+        coinlistRight = new JPanel();
+        coinListViewOut = new JPanel();
         for(int i=0; i<user.getCoinList().size(); i++) {
         	coinlistLabels.add(new JLabel(user.getCoinList().get(i)));
+        	coinlistNumLabels.add(new JLabel(user.getNumPerCoinList().get(i).toString()));
         }
-        coinListTitle = new JLabel("Coin List:"); 
-        coinListView = new JPanel(); 
+        coinListTitle = new JLabel("Coin List:");
+        addCoinTF = new JTextField();
+        addCoin = new JButton("Add Coin");
+        addCoin.add(addCoinTF);
+        
 //        CHART VIEW STUFF
         chartTitle = new JLabel("Chart"); 
         chartView = new JPanel();      
+        testTF = new JTextField("Enter Inputs Here");
+        testBuild = new JButton("Build Chart");
         voiceBuildChart = new JButton("Build a Chart");  
 //        ACCOUT VIEW STUFF
         accountTitle = new JLabel("View Connected Accounts"); 
-        accountView = new JPanel();  
+        accountView = new JPanel();
+        accountViewOut = new JPanel();
         
 //        ORGANIZE
-        JPanel[] panelArr = {introPanel, dashPanel, mp, introView, balView, coinListView, chartView, accountView};
+        JPanel[] panelArr = {introPanel, dashPanel, mp, introView, balView, balViewOut, coinListView, coinListViewOut, chartView, accountView, accountViewOut};
         JLabel[] labelArr = {introTitle};
         JButton[] buttonArr = {back};
         
@@ -96,11 +115,17 @@ public class DashboardGUI {
         	buttonArr[i].setBackground(vars.btnBGColor);
         	buttonArr[i].setForeground(vars.btnFGColor);
         };
-        mp.setLayout(new BoxLayout(mp, BoxLayout.Y_AXIS));
+        mp.setLayout(new BoxLayout(mp, BoxLayout.Y_AXIS)); 
         introTitle.setForeground(Color.WHITE);
         introTitle.setFont(new Font(null, Font.BOLD, 22));
+        introView.setLayout(new FlowLayout(FlowLayout.LEFT));
         balView.setBackground(vars.mainPanelColor);
-//        balView.setBorder(new Border());
+        balView.setForeground(vars.mainPanelColor);
+//        frame.setUndecorated(true);
+//        frame.setShape(new RoundRectangle2D.Double(10, 10, 1200, 800, 10, 10));
+        balView.setBorder(new OldRoundedBorderLine(vars.panelBGColor, 20));
+        coinListView.setBorder(new OldRoundedBorderLine(vars.panelBGColor, 30));
+        accountView.setBorder(new OldRoundedBorderLine(vars.panelBGColor, 80));
         coinListView.setBackground(Color.WHITE);
         accountView.setBackground(Color.WHITE);
         introView.setPreferredSize(new Dimension(1200, 100));
@@ -115,6 +140,22 @@ public class DashboardGUI {
 				frame.dispose();
 			}
 
+        });        
+        testBuild.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				String inputFromTF = testTF.getText();
+				String[] stringsFromTF = inputFromTF.split(" ");
+				for(int i=0; i<stringsFromTF.length; i++) {					
+					System.out.println(stringsFromTF[i]);
+				}
+				MethodFromText mo = new MethodFromText();
+				String whichMethod = mo.findMethodToRun(stringsFromTF);
+				ChartBuild chartBuild = new ChartBuild(whichMethod, user);
+				JPanel chart = chartBuild.buildM1Type();
+			}
+
         });
         
 //        PANEL ELEMENTS
@@ -126,21 +167,31 @@ public class DashboardGUI {
         	balView.add(balanceLabelList.get(i));
         }
 //        COIN LIST VIEW STUFF
+        coinlistLRPanel.add(coinlistLeft);
+        coinlistLRPanel.add(coinlistRight);
         coinListView.add(coinListTitle); 
+        coinListView.add(addCoin); 
+        coinListView.add(coinlistLRPanel);
         for(int i=0; i<coinlistLabels.size(); i++) {
-        	coinListView.add(coinlistLabels.get(i));
+        	coinlistLeft.add(coinlistLabels.get(i));
+        	coinlistRight.add((coinlistNumLabels).get(i));
         }
 //        CHART VIEW STUFF
         chartView.add(chartTitle);
+        chartView.add(testTF);
+        chartView.add(testBuild);
 //        ACCOUNT VIEW STUFF
         accountView.add(accountTitle);
         
 //        MAIN PANEL MAKEUP
         introPanel.add(introView);
-        dashPanel.add(balView);
+        balViewOut.add(balView);
+        coinListViewOut.add(coinListView);
+        accountViewOut.add(accountView);
+        dashPanel.add(balViewOut);
         dashPanel.add(chartView);
-        dashPanel.add(coinListView);
-        dashPanel.add(accountView);
+        dashPanel.add(coinListViewOut);
+        dashPanel.add(accountViewOut);
         mp.add(introPanel);
         mp.add(dashPanel);
         
@@ -165,4 +216,42 @@ public class DashboardGUI {
 		new DashboardGUI();
 	}
 
+}
+
+class OldRoundedBorderLine extends AbstractBorder {
+
+    private static int MARGIN = 80;
+    private static final long serialVersionUID = 1L;
+    private Color color;
+
+    OldRoundedBorderLine(Color clr, int margin) {
+    	MARGIN = margin;
+        color = clr;
+    }
+
+    public void setColor(Color clr) {
+        color = clr;
+    }
+
+    @Override
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+        ((Graphics2D) g).setRenderingHint(
+            RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g.setColor(color);
+        g.drawRoundRect(x, y, width, height, MARGIN, MARGIN);
+    }
+
+    @Override
+    public Insets getBorderInsets(Component c) {
+        return new Insets(MARGIN, MARGIN, MARGIN, MARGIN);
+    }
+
+    @Override
+    public Insets getBorderInsets(Component c, Insets insets) {
+        insets.left = MARGIN;
+        insets.top = MARGIN;
+        insets.right = MARGIN;
+        insets.bottom = MARGIN;
+        return insets;
+    }
 }

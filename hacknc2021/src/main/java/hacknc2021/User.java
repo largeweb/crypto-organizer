@@ -9,8 +9,13 @@ public class User {
 	private ArrayList<Integer> numPerCoinList;
 	
 	public User(String name) {
+		this.name = name;
 		coinlist = new ArrayList<String>();
 		numPerCoinList = new ArrayList<Integer>();
+	}
+	
+	public String getName() {
+		return name;
 	}
 
 	public ArrayList<String> getCoinList() {
