@@ -13,6 +13,9 @@ import java.awt.geom.*;
 
 import javax.swing.*;
 import javax.swing.border.*;
+
+import org.jfree.chart.ChartPanel;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -157,7 +160,6 @@ public class DashboardGUI {
 				JPanel cp = chartbuild.getChart();
 				chartView.add(cp);
 				updateChart();
-				
 			}
 
         });

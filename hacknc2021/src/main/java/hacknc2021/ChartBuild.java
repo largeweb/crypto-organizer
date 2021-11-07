@@ -2,6 +2,10 @@ package hacknc2021;
 
 import java.awt.*;
 import javax.swing.*;
+import java.util.HashSet;
+
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 public class ChartBuild {
 	
@@ -14,16 +18,16 @@ public class ChartBuild {
 	}
 	
 	public JPanel getChart() {
-		JPanel chart = new JPanel();
-		JButton btn = new JButton();
-		if(ctype == "m1chart") {			
-			btn.setText("big chart");;
+		JPanel test = new JPanel();
+		if(ctype == "m1chart") {	
+	       for(int i=0; i<user.getCoinList().size(); i++) {
+	    	   test.add(new JLabel(user.getCoinList().get(i)));
+	       }
 		}
-		if(ctype == "m2chart") {			
-			btn = new JButton("small chart");
+		if(ctype == "m2chart") {
+			
 		}
-		chart.add(btn);
-		return chart;
+		return test;
 	}
 
 }
