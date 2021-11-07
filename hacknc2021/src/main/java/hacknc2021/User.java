@@ -22,9 +22,6 @@ public class User {
 	}
 	
 	public void addCoin(String name, int amount) {
-		if(coinlist.contains(name)) {
-			throw new IllegalArgumentException("String name already exist - not adding");
-		}
 		coinlist.add(name);
 		numPerCoinList.add(amount);
 	}
@@ -33,7 +30,14 @@ public class User {
 		if(!coinlist.contains(name)) {
 			throw new IllegalArgumentException("String name does not exist - not removing");
 		}
-		coinlist.remove(name);
+		int count = 0;
+		for(int i=0; i<coinlist.size(); i++) {
+			if(coinlist.get(i).equals(name)) {
+				count = i;
+			}
+		}
+		coinlist.remove(count);
+		numPerCoinList.remove(count);
 	}
 	
 	public void printEverything() {

@@ -23,9 +23,6 @@ public class main {
 			user1.addCoin("Dogecoin", 1000);
 			user1.addCoin("AICoin", 3000);
 			user1.addCoin("BugCoin", 2000);
-			user1.addCoin("BugCoin", 65000);
-			user1.removeCoin("Dogecoin");
-			user1.removeCoin("AICoin");
 		} catch(Exception e) {
 			System.out.println("Some exception was caught");
 		}
