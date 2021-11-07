@@ -92,9 +92,9 @@ public class DashboardGUI {
         addCoinTF = new JTextField("Coin Name");
         addCoinTF2 = new JTextField("Amount");
         addCoin = new JButton("Add Coin");
-        addCoinTF.setPreferredSize(new Dimension(50, 50));
-        addCoinTF2.setPreferredSize(new Dimension(50, 50));
-        addCoin.setPreferredSize(new Dimension(200, 100));
+        addCoinTF.setPreferredSize(new Dimension(120, 50));
+        addCoinTF2.setPreferredSize(new Dimension(120, 50));
+        addCoin.setPreferredSize(new Dimension(400, 100));
         addCoin.add(addCoinP);
         addCoinP.add(addCoinTF);
         addCoinP.add(addCoinTF2);
@@ -147,7 +147,8 @@ public class DashboardGUI {
         introView.setPreferredSize(new Dimension(1200, 100));
         introPanel.setPreferredSize(new Dimension(1200, 100));
         dashPanel.setPreferredSize(new Dimension(1200, 800));
-        addCoin.setPreferredSize(new Dimension(200, 50));
+        addCoin.setPreferredSize(new Dimension(500, 50));
+        coinlistLRPanel.setPreferredSize(new Dimension(500, 100));
 //        removeCoin.setPreferredSize(new Dimension(200, 50));
         
         back.addActionListener(new ActionListener() {
@@ -223,8 +224,8 @@ public class DashboardGUI {
         	balView.add(balanceLabelList.get(i));
         }
 //        COIN LIST VIEW STUFF
-        coinlistLeft.setPreferredSize(new Dimension(100, 200));
-        coinlistRight.setPreferredSize(new Dimension(100, 200));
+        coinlistLeft.setPreferredSize(new Dimension(200, 200));
+        coinlistRight.setPreferredSize(new Dimension(200, 200));
         coinlistLRPanel.add(coinlistLeft);
         coinlistLRPanel.add(coinlistRight);
         coinListView.add(coinListTitle); 
@@ -274,6 +275,11 @@ public class DashboardGUI {
 		user.updateCoin("AICoin", 100);
 		user.printEverything();
 		cp.repaint();
+		coinlistLeft.repaint();
+		coinlistRight.repaint();
+		coinListView.remove(coinlistLRPanel);
+//		JPanel newp = cp;
+		coinListView.add(coinlistLRPanel);
 		coinListView.repaint();
         for(int i=0; i<coinlistLabels.size(); i++) {
         	coinlistLeft.repaint();
