@@ -19,13 +19,16 @@ public class ChartBuild {
 	
 	public JPanel getChart() {
 		JPanel test = new JPanel();
+		API api = new API();
 		if(ctype == "m1chart") {	
 	       for(int i=0; i<user.getCoinList().size(); i++) {
 	    	   test.add(new JLabel(user.getCoinList().get(i)));
 	       }
 		}
-		if(ctype == "m2chart") {
-			
+		if(ctype == "ethbalance") {
+			test.add(new JLabel(api.getMyEthCost()));
+			test.add(new JLabel(api.getBinancePrice("Dogecoin")));
+			test.add(new JLabel(api.getEthBalance().toString()));
 		}
 		return test;
 	}
