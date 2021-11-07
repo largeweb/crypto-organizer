@@ -6,13 +6,13 @@ public class User {
 	
 	private String name;
 	private ArrayList<String> coinlist;
-	private ArrayList<Integer> numPerCoinList;
+	private ArrayList<Double> numPerCoinList;
 	private double totalBalInUSD;
 	
 	public User(String name) {
 		this.name = name;
 		coinlist = new ArrayList<String>();
-		numPerCoinList = new ArrayList<Integer>();
+		numPerCoinList = new ArrayList<Double>();
 		this.totalBalInUSD = 2342.32;
 	}
 	
@@ -28,11 +28,11 @@ public class User {
 		return coinlist;
 	}
 	
-	public ArrayList<Integer> getNumPerCoinList() {
+	public ArrayList<Double> getNumPerCoinList() {
 		return numPerCoinList;
 	}
 	
-	public void addCoin(String name, int amount) {
+	public void addCoin(String name, double amount) {
 		coinlist.add(name);
 		numPerCoinList.add(amount);
 	}
@@ -49,6 +49,19 @@ public class User {
 		}
 		coinlist.remove(count);
 		numPerCoinList.remove(count);
+	}
+	
+	public void updateCoin(String name, double diff) {
+		if(!coinlist.contains(name)) {
+			throw new IllegalArgumentException("String name does not exist - not removing");
+		}
+		int count = 0;
+		for(int i=0; i<coinlist.size(); i++) {
+			if(coinlist.get(i).equals(name)) {
+				count = i;
+			}
+		}
+		numPerCoinList.set(count, numPerCoinList.get(count)+diff);
 	}
 	
 	public void printEverything() {

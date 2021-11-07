@@ -30,9 +30,9 @@ public class DashboardGUI {
 //	BALANCE VIEW STUFF
 	private ArrayList<JLabel> balanceLabelList;
 //	COIN LIST VIEW STUFF
-	private JTextField addCoinTF;
+	private JTextField addCoinTF, addCoinTF2;
 	private JButton addCoin, removeCoin;
-	private JPanel coinlistLRPanel, coinlistLeft, coinlistRight;
+	private JPanel addCoinP, coinlistLRPanel, coinlistLeft, coinlistRight;
 	private ArrayList<JLabel> coinlistLabels, coinlistNumLabels;
 //	CHART VIEW STUFF
 	private JTextField testTF;
@@ -40,10 +40,14 @@ public class DashboardGUI {
 	private JPanel cp;
 //	ACCOUNT VIEW STUFF
 	
+	private boolean randomVar;
+	
 	private User user;
 	
 	public DashboardGUI() {
 //		INITIALIZE VARIABLES
+		
+		randomVar = true;
 		user = new User("Josh");
 		try {			
 			user.addCoin("Dogecoin", 1000);
@@ -52,6 +56,7 @@ public class DashboardGUI {
 		} catch(Exception e) {
 			System.out.println("Some exception was caught");
 		}
+		cp = new JPanel();
 		user.printEverything();
         frame = new JFrame("Dashboard");
         introPanel = new JPanel();
@@ -67,6 +72,7 @@ public class DashboardGUI {
         balTitle = new JLabel("View your Balance"); 
         balView = new JPanel();   
         balViewOut = new JPanel();
+        addCoinP = new JPanel();
         balanceLabelList = new ArrayList<JLabel>();
         JLabel totalBalance = new JLabel("Your total balance is: " + user.getTotalBal());
         balanceLabelList.add(totalBalance);
@@ -83,9 +89,15 @@ public class DashboardGUI {
         	coinlistNumLabels.add(new JLabel(user.getNumPerCoinList().get(i).toString()));
         }
         coinListTitle = new JLabel("Coin List:");
-        addCoinTF = new JTextField();
+        addCoinTF = new JTextField("Coin Name");
+        addCoinTF2 = new JTextField("Amount");
         addCoin = new JButton("Add Coin");
-        addCoin.add(addCoinTF);
+        addCoinTF.setPreferredSize(new Dimension(50, 50));
+        addCoinTF2.setPreferredSize(new Dimension(50, 50));
+        addCoin.setPreferredSize(new Dimension(200, 100));
+        addCoin.add(addCoinP);
+        addCoinP.add(addCoinTF);
+        addCoinP.add(addCoinTF2);
         
 //        CHART VIEW STUFF
         chartTitle = new JLabel("Chart"); 
@@ -116,11 +128,13 @@ public class DashboardGUI {
         	buttonArr[i].setBackground(vars.btnBGColor);
         	buttonArr[i].setForeground(vars.btnFGColor);
         };
+        
         mp.setLayout(new BoxLayout(mp, BoxLayout.Y_AXIS)); 
         introTitle.setForeground(Color.WHITE);
         introTitle.setFont(new Font(null, Font.BOLD, 22));
         introView.setLayout(new FlowLayout(FlowLayout.LEFT));
         chartView.setLayout(new FlowLayout(FlowLayout.LEFT));
+        coinListViewOut.setLayout(new GridLayout());
         balView.setBackground(vars.mainPanelColor);
         balView.setForeground(vars.mainPanelColor);
 //        frame.setUndecorated(true);
@@ -133,6 +147,8 @@ public class DashboardGUI {
         introView.setPreferredSize(new Dimension(1200, 100));
         introPanel.setPreferredSize(new Dimension(1200, 100));
         dashPanel.setPreferredSize(new Dimension(1200, 800));
+        addCoin.setPreferredSize(new Dimension(200, 50));
+//        removeCoin.setPreferredSize(new Dimension(200, 50));
         
         back.addActionListener(new ActionListener() {
 
@@ -147,11 +163,32 @@ public class DashboardGUI {
 
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				JavaSoundRecorder jsr = new JavaSoundRecorder();
-				jsr.start();
+//				JavaSoundRecorder jsr = new JavaSoundRecorder();
+//				jsr.start();
+				try {
+					Thread.sleep(5000);
+					chartView.remove(cp);
+					ChartBuild chartbuild = new ChartBuild("m1chart", user);
+					cp = chartbuild.getChart();
+					chartView.add(cp);
+					updateChart();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				user.updateCoin("AICoin", 100.0);
+				updateChart();
 			}
 
-        }); 
+        });
+        addCoin.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				user.addCoin(addCoinTF.getText(), Double.parseDouble(addCoinTF2.getText()));
+			}
+
+        });
         testBuild.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
@@ -164,8 +201,14 @@ public class DashboardGUI {
 				MethodFromText mo = new MethodFromText();
 				String whichMethod = mo.findMethodToRun(stringsFromTF);
 				ChartBuild chartbuild = new ChartBuild(whichMethod, user);
-				JPanel cp = chartbuild.getChart();
-				chartView.add(cp);
+				cp = chartbuild.getChart();
+				if(randomVar) {					
+					chartView.add(cp);
+					randomVar = false;
+				} else {
+					cp.repaint();
+				}
+				
 				updateChart();
 			}
 
@@ -180,6 +223,8 @@ public class DashboardGUI {
         	balView.add(balanceLabelList.get(i));
         }
 //        COIN LIST VIEW STUFF
+        coinlistLeft.setPreferredSize(new Dimension(100, 200));
+        coinlistRight.setPreferredSize(new Dimension(100, 200));
         coinlistLRPanel.add(coinlistLeft);
         coinlistLRPanel.add(coinlistRight);
         coinListView.add(coinListTitle); 
@@ -226,7 +271,14 @@ public class DashboardGUI {
 	}
 	
 	public void updateChart() {
-//		chartView.add(cp);
+		user.updateCoin("AICoin", 100);
+		user.printEverything();
+		cp.repaint();
+		coinListView.repaint();
+        for(int i=0; i<coinlistLabels.size(); i++) {
+        	coinlistLeft.repaint();
+        	coinlistRight.repaint();
+        }
 		mp.revalidate();
 		mp.repaint();
 	}
