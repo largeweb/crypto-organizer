@@ -18,8 +18,8 @@ import javax.swing.JTextField;
 public class StartGUI {
 	
 	public static JFrame frame;
-	private JPanel mp, panel1;
-	private JLabel title;
+	private JPanel mp, panel1, panel2, title;
+	private JLabel titleLabel;
 	private JButton viewAcct;
 	
 	public StartGUI() {
@@ -27,12 +27,14 @@ public class StartGUI {
         frame = new JFrame("Crypto Organizer");
         mp = new JPanel();
         panel1 = new JPanel();  
-        title = new JLabel("Crypto Organizer");  
+        panel2 = new JPanel();  
+        title = new JPanel();
+        titleLabel = new JLabel("Crypto Organizer");  
         viewAcct = new JButton("View Account");  
         
 //        ORGANIZE
-        JPanel[] panelArr = {mp, panel1};
-        JLabel[] labelArr = {title};
+        JPanel[] panelArr = {mp, panel1, panel2, title};
+        JLabel[] labelArr = {titleLabel};
         JButton[] buttonArr = {viewAcct};
         
 //        SET PROPERTIES
@@ -49,8 +51,11 @@ public class StartGUI {
         	buttonArr[i].setForeground(vars.btnFGColor);
         };
         mp.setLayout(new BoxLayout(mp, BoxLayout.Y_AXIS));
-        title.setForeground(Color.YELLOW);
-        title.setFont(new Font(null, Font.BOLD, 22));
+        title.setForeground(vars.labelFGColor);
+        titleLabel.setFont(new Font(null, Font.BOLD, 25));
+        title.setPreferredSize(new Dimension(350, 80));
+        title.add(titleLabel);
+        viewAcct.setPreferredSize(new Dimension(150, 80));
         
 //		SETUP BUTTON ACTION LISTENERS
         viewAcct.addActionListener(new ActionListener() {
@@ -66,14 +71,15 @@ public class StartGUI {
         
 //        PANEL MAKEUP
         panel1.add(title);  
-        panel1.add(viewAcct);  
+        panel2.add(viewAcct);  
         
 //        MAIN PANEL MAKEUP
         mp.add(panel1);
+        mp.add(panel2);
         
 //        FRAME MAKEUP
         frame.add(mp);  
-        frame.setSize(700, 450);  
+        frame.setSize(400, 260);  
         frame.setLocationRelativeTo(null);  
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);  

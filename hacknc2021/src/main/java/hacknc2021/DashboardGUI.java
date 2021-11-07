@@ -36,7 +36,7 @@ public class DashboardGUI {
 //	CHART VIEW STUFF
 	private JTextField testTF;
 	private JButton testBuild;
-	private JPanel chart;
+	private JPanel cp;
 //	ACCOUNT VIEW STUFF
 	
 	private User user;
@@ -119,6 +119,7 @@ public class DashboardGUI {
         introTitle.setForeground(Color.WHITE);
         introTitle.setFont(new Font(null, Font.BOLD, 22));
         introView.setLayout(new FlowLayout(FlowLayout.LEFT));
+        chartView.setLayout(new FlowLayout(FlowLayout.LEFT));
         balView.setBackground(vars.mainPanelColor);
         balView.setForeground(vars.mainPanelColor);
 //        frame.setUndecorated(true);
@@ -152,8 +153,11 @@ public class DashboardGUI {
 				}
 				MethodFromText mo = new MethodFromText();
 				String whichMethod = mo.findMethodToRun(stringsFromTF);
-				ChartBuild chartBuild = new ChartBuild(whichMethod, user);
-				JPanel chart = chartBuild.buildM1Type();
+				ChartBuild chartbuild = new ChartBuild(whichMethod, user);
+				JPanel cp = chartbuild.getChart();
+				chartView.add(cp);
+				updateChart();
+				
 			}
 
         });
@@ -209,6 +213,12 @@ public class DashboardGUI {
 	
 	public void updateBalances() {
 		
+	}
+	
+	public void updateChart() {
+//		chartView.add(cp);
+		mp.revalidate();
+		mp.repaint();
 	}
 
 	public static void main(String[] args) {

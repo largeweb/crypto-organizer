@@ -5,16 +5,24 @@ import javax.swing.*;
 
 public class ChartBuild {
 	
-	private String chartType;
+	private String ctype;
 	private User user;
 	
 	public ChartBuild(String ctype, User user) {
-		chartType = ctype;
+		this.ctype = ctype;
 		this.user = user;
 	}
 	
-	public JPanel buildM1Type() {
+	public JPanel getChart() {
 		JPanel chart = new JPanel();
+		JButton btn = new JButton();
+		if(ctype == "m1chart") {			
+			btn.setText("big chart");;
+		}
+		if(ctype == "m2chart") {			
+			btn = new JButton("small chart");
+		}
+		chart.add(btn);
 		return chart;
 	}
 

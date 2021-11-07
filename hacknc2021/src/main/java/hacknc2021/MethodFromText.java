@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class MethodFromText {
 	
-	private String[] m1list = {"big"};
-	private String[] m2list = {"small"};
+	private String[] m1list = {"BIG"};
+	private String[] m2list = {"SMALL"};
 //	private ArrayList<String> m1keywords, m2keywords;
 	
 	public MethodFromText() {
@@ -22,12 +22,12 @@ public class MethodFromText {
 		int m2match = 0;
 		for(int i=0; i<stringlist.length; i++) {
 			for(int j=0; j<m1list.length; j++) {
-				if(stringlist[i].equals(m1list[j])) {
+				if(stringlist[i].toUpperCase().equals(m1list[j])) {
 					m1match += 1;
 				}
 			}
 			for(int j=0; j<m2list.length; j++) {
-				if(stringlist[i].equals(m2list[j])) {
+				if(stringlist[i].toUpperCase().equals(m2list[j])) {
 					m2match += 1;
 				}
 			}
